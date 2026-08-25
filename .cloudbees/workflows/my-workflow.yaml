@@ -15,3 +15,13 @@ jobs:
         shell: sh
         run: |
           echo "hello world"
+      - id: print-gitleaks-outputs
+        name: Print gitleaks outputs
+        uses: docker://alpine:latest
+        run: |
+          echo "Gitleaks outputs:"
+      - id: print-gosec-outputs
+        name: Print gitleaks outputs
+        uses: gitleaks://alpine:latest
+        run: |
+          echo "gitleaks outputs:"
