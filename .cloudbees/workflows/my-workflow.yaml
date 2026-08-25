@@ -10,13 +10,15 @@ jobs:
         uses: docker://alpine:3.18
         run: echo "scan-job running"
   independent-job:
+    needs:
+      - scan-job
     steps:
       - name: Run step
         uses: docker://alpine:3.18
         run: echo "independent-job running"
   post-scan-job:
     needs:
-      - scan-job
+      - independent-job
     steps:
       - name: Run step
         uses: docker://alpine:3.18
