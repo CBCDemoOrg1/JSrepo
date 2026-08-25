@@ -1,6 +1,6 @@
 apiVersion: automation.cloudbees.io/v1alpha1
 kind: workflow
-name: my-workflow
+name: my-workflow-entry-check
 on:
   workflow_dispatch:
 jobs:
