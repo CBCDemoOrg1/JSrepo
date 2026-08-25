@@ -1,23 +1,23 @@
 apiVersion: automation.cloudbees.io/v1alpha1
 kind: workflow
-name: My workflow
+name: my-workflow
 on:
   workflow_dispatch:
 jobs:
   scan-job:
     steps:
-      - name: Say hello
-        uses: docker://golang:1.20.3-alpine3.17
-        shell: sh
-        run: |
-          echo "hello world"
-      - id: print-gitleaks-outputs
-        name: Print gitleaks outputs
-        uses: docker://alpine:latest
-        run: |
-          echo "Gitleaks outputs:"
-      - id: print-gosec-outputs
-        name: Print gitleaks outputs
-        uses: gitleaks://alpine:latest
-        run: |
-          echo "gitleaks outputs:"
+      - name: Run step
+        uses: docker://alpine:3.18
+        run: echo "scan-job running"
+  independent-job:
+    steps:
+      - name: Run step
+        uses: docker://alpine:3.18
+        run: echo "independent-job running"
+  post-scan-job:
+    needs:
+      - scan-job
+    steps:
+      - name: Run step
+        uses: docker://alpine:3.18
+        run: echo "post-scan-job running"
